@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{L1EO:function(a,e,o){},QfWi:function(a,e,o){"use strict";o.r(e);o("JBxO"),o("FdtR"),o("L1EO");fetch("https://api.themoviedb.org/3/movie/popular?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=$1"),console.log("hey")}},[["QfWi",1,2]]]);
+//# sourceMappingURL=main.e63f654035a2045d3dc7.js.map
