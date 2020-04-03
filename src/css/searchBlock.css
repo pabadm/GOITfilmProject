@@ -1,0 +1,32 @@
+#search_block{
+    padding-top: 0.75rem;
+    margin: auto;
+}
+#film_search_form{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+.search_input{
+    background-color: #337CAA;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    border: 0;
+    padding: 1rem;
+    border-radius: 1.5625rem;
+}
+.search_input:first-child{
+    border-radius: 1.5625rem 0 0 1.5625rem;
+}
+.search_input:last-child{
+    border-radius: 0 1.5625rem 1.5625rem 0;
+    background-color: #27ae60;
+}
+.search_input:hover{
+    background-color: #337CAA;
+}
+.search_input:last-child:hover{
+    background-color: #ab41be;
+    
+}

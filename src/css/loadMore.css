@@ -1,0 +1,12 @@
+#load_more{
+    display: block;
+    margin: auto;
+    margin-bottom: 1rem;
+    background-color: #ab41be;
+    border: 0;
+    padding: 2rem 5rem;
+    border-radius: 1.5625rem;
+}
+#load_more:hover{
+    background-color: #c84754;
+}
