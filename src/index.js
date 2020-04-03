@@ -24,6 +24,7 @@ import showModal from './scripts/showModal.js';
 
 import {loadMore} from './scripts/loadMore.js';
 
+import {themeToggler, themeDefault} from './scripts/themeToggler.js';
 //начальный запуск показа фильмов
 preloader();
 //
@@ -42,5 +43,11 @@ refs.load_more_btn.addEventListener('click', loadMore);
 //ивент для кнопки home
 refs.home_btn.addEventListener('click', preloader);
 
+//ивент для кнопки (theme_toggle_btn)
+
+refs.theme_toggle_btn.addEventListener('click',themeToggler);
+
 //экспорты
 export default refs;
+// themeToggler();
+themeDefault();
