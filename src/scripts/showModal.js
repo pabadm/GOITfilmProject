@@ -23,6 +23,10 @@ const showModal = (event) => {
             filmGenres: data.genres[0].name,
             filmVote:data.vote_average,
         }
+        if(data.poster_path === null){
+          console.log('filmData.filmImgLink :',data.poster_path);
+          filmData.filmImgLink = 'https://seor.ua/media/img/default-image.jpg';
+        }
         refs.wrapper.insertAdjacentHTML('beforeend', modal(filmData));
         refs.modal_block = document.querySelector('.modal_block');
         refs.body = document.querySelector('body');

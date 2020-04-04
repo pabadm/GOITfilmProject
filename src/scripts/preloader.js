@@ -8,6 +8,7 @@ import apiCreator from './apiCreator.js';
 const preloader = (event) => {
   if (event !== undefined) {
     loadMoreReset(preloader);
+    refs.film_search_form.firstElementChild.value = '';
   }
   showPromo(apiCreator.popular(page));
 }

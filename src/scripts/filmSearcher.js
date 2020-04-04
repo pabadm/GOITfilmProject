@@ -14,7 +14,13 @@ let searchQuery = '';//вывожу эту переменную, чтобы пр
 
 const filmSearcher = (event, query = refs.film_search_form.firstElementChild.value) => {// query также может передавться из loadMore()
   if (event !== undefined) {//функция используется не только как callback`
+    //   if(refs.film_search_form.firstElementChild.value === ''){
+    //   break;
+    // }
     loadMoreReset(filmSearcher);
+    // if(refs.film_search_form.firstElementChild.value === ''){
+    //   break;
+    // }
   }
   showPromo(apiCreator.search(page, query));
   return searchQuery = query;//для loadMore

@@ -14,7 +14,7 @@
 
 .film_promo{
     border-radius: 1.5625rem;
-    
+    /* height: 100%; */
     width: 22.5%;
     margin-top: 1.25%;
     margin-bottom: 1.25%;
@@ -31,6 +31,7 @@
     display: block;
     width: 100%;
     height: auto;
+    /* min-height: 100%; */
     /* padding-top: 0.5rem; */
     /* padding-top: 2.5%; */
     margin: auto;

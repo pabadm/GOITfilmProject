@@ -4,6 +4,7 @@ import refs from '../index.js';
 let background = 'rgb(64, 69, 82)';
 const themeToggler = (event) => {
     // console.log(refs.films_block.style.backgroundColor);
+    if(background === null) background = 'rgb(64, 69, 82)';
     console.log('background :', background);
   if (background === 'rgb(64, 69, 82)') {
     background = 'rgb(255, 255, 255)';
