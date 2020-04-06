@@ -34,21 +34,24 @@ const showPromo = (api) => {
       } //вывод сообщения notFound
       results.forEach(film => {
         //вставка тегов с фильмами
-
+        
         const filmData = {
           filmImgLink: apiCreator.image(film.poster_path, true),
           filmVote: film.vote_average,
           filmTitle: film.title,
           filmId: film.id
         };
+        if(film.title === undefined){
+          filmData.filmTitle = film.name;
+        }
         if(film.poster_path === null){
-          console.log('filmData.filmImgLink :',film.poster_path);
           filmData.filmImgLink = 'https://seor.ua/media/img/default-image.jpg';
         }
         refs.films_block.insertAdjacentHTML('beforeend', promo(filmData));
         refs.film_promo = document.querySelectorAll('.film_promo');
         refs.film_promo_btn = document.querySelectorAll('.film_promo_btn');
       })
+      
     }).catch(err => console.log('err ' + err));
 }
 //промо фильма

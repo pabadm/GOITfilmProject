@@ -1,6 +1,7 @@
 'use strict';
 import './styles.css';
-//через прочерк я отмечаю теги
+
+//через прочерк я отмечаю теги, которые добавляются через функции
 const refs = {
   films_block: document.querySelector('#films_block'),
   film_search_form: document.querySelector('#film_search_form'),
@@ -14,19 +15,24 @@ const refs = {
   //body
   load_more_btn: document.querySelector('#load_more'),
   theme_toggle_btn: document.querySelector('#theme_toggle_btn'),
+  switch_btn: document.querySelector('#switch_btn'),//переключалка между сериалами и фильмами
+  body: document.querySelector('body'),
 };
-
+export default refs;
 
 import {filmSearcher} from './scripts/filmSearcher.js';
-import preloader from './scripts/preloader.js';
+
+import filmPopular from './scripts/filmPopular.js';
 
 import showModal from './scripts/showModal.js';
 
 import {loadMore} from './scripts/loadMore.js';
 
-import {themeToggler, themeDefault} from './scripts/themeToggler.js';
+import {switcher} from './scripts/switcher.js';
+
+// import {themeToggler, themeDefault} from './scripts/themeToggler.js';
 //начальный запуск показа фильмов
-preloader();
+filmPopular();
 //
 
 //ивент для формы
@@ -41,13 +47,42 @@ refs.films_block.addEventListener('click',showModal);
 refs.load_more_btn.addEventListener('click', loadMore);
 
 //ивент для кнопки home
-refs.home_btn.addEventListener('click', preloader);
+refs.home_btn.addEventListener('click', filmPopular);
 
 //ивент для кнопки (theme_toggle_btn)
 
-refs.theme_toggle_btn.addEventListener('click',themeToggler);
+// refs.theme_toggle_btn.addEventListener('click',themeToggler);
+
+//ивент для переключалки 
+refs.switch_btn.addEventListener('click', switcher);
+
+// const scrollFunc = (event) =>{
+//   console.log('event :', pageYOffset + window.innerHeight);
+//   console.log('refs.wrapper.offsetHeight :', refs.body.offsetHeight);
+//   console.log('window.innerHeight :', window.innerHeight);
+  // console.log('pageYOffset - refs.wrapper.offsetHeight :',refs.wrapper.offsetHeight - pageYOffset);
+  // if(pageYOffset === '80%'){
+  //   console.log('yesss!!! :', );
+  // }
+  // // console.log('event.target :', event.target);
+  // refs.load_more_btn = pageYOffset + 'px';
+  // console.log('refs.load_more_btn :', refs.load_more_btn);
+// }
+
+// console.log('_.debounce :', windowdebounce);
+// window.addEventListener('scroll',debounce(loadMore,50));
 
 //экспорты
-export default refs;
+
+
+
 // themeToggler();
-themeDefault();
+// themeDefault();
+// localStorage.setItem('theme','light');
+if(localStorage.getItem('theme') === 'light'){
+  localStorage.setItem('theme','dark');
+}else{
+  localStorage.setItem('theme','light');
+}
+console.log('localStorage.getItem() :', localStorage.getItem('theme'));
+console.log('localStorage :', localStorage);

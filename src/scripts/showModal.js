@@ -2,7 +2,7 @@
 import refs from '../index.js';
 import apiCreator from './apiCreator.js';
 import modal from '../templates/modal.hbs';
-
+import {typeOfFilm} from './switcher.js';
 const closeModal = (event)=>{
   if(event.target.className === 'modal_background' || event.target.className === 'modal_cross'){//(.modal_cross - крестик в углу(в дом не добавлял))
     refs.wrapper.removeChild(refs.modal_background);
@@ -13,20 +13,31 @@ const closeModal = (event)=>{
 const showModal = (event) => {
   if (event.target.className === 'film_promo_btn') {
     //отрисовка модалки
-    fetch(apiCreator.movie(event.target.id))
+    fetch(apiCreator.movie(event.target.id, typeOfFilm))
       .then(response => response.json())
       .then(data => {
+
         const filmData = {
             filmImgLink: apiCreator.image(data.poster_path),
             filmTitle: data.title,
             filmOverview: data.overview,
-            filmGenres: data.genres[0].name,
+            filmGenres: data.genres.map(genre => genre.name).join(', '),
             filmVote:data.vote_average,
+            genresWord:'Genres:',
+        }
+        console.log('data.title :', data.title);
+        if(data.title === undefined){
+          filmData.filmTitle = data.name;
         }
         if(data.poster_path === null){
-          console.log('filmData.filmImgLink :',data.poster_path);
           filmData.filmImgLink = 'https://seor.ua/media/img/default-image.jpg';
         }
+        console.log('data.gebres :', data.genres);
+        if(data.genres.length === 0){
+          filmData.filmGenres = "";
+          filmData.genresWord = '';
+        }
+
         refs.wrapper.insertAdjacentHTML('beforeend', modal(filmData));
         refs.modal_block = document.querySelector('.modal_block');
         refs.body = document.querySelector('body');

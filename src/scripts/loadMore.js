@@ -1,6 +1,6 @@
 'use strict';
 import refs from '../index.js';
-import preloader from './preloader.js';
+import filmPopular from './filmPopular.js';
 import {
   apiData
 } from './showPromo.js';
@@ -15,7 +15,7 @@ import {searchQuery} from './filmSearcher.js';
 
 
 let page = 1; // страница, которая будет отрисовываться через api
-let apiFunc = preloader; // переменная, в которую закидывается ссылка на функцию, которую должна выполнить кнопка load_more_btn(preloader по умолчанию т.к. она выполняется первой)
+let apiFunc = filmPopular; // переменная, в которую закидывается ссылка на функцию, которую должна выполнить кнопка load_more_btn(filmPopular по умолчанию т.к. она выполняется первой)
 
 
 const loadMore = () => {
@@ -23,7 +23,8 @@ const loadMore = () => {
   if (page >= apiData.total_pages || apiData.hasOwnProperty('errors')) {
     refs.load_more_btn.style.display = 'none';
   }
-  apiFunc(undefined, searchQuery);// аргументы нужны только filmSearcher, но они не мешают preloader
+  console.log('page :', page);
+  apiFunc(undefined, searchQuery);// аргументы нужны только filmSearcher, но они не мешают showPopular
   return page;
 }
 

@@ -8,6 +8,7 @@ import {
   showPromo
 } from './showPromo.js';
 import apiCreator from './apiCreator.js';
+import {typeOfFilm} from './switcher.js';
 
 
 let searchQuery = '';//вывожу эту переменную, чтобы при изменении текста в поле ввода могло корректно действовать событие loadMore
@@ -22,7 +23,7 @@ const filmSearcher = (event, query = refs.film_search_form.firstElementChild.val
     //   break;
     // }
   }
-  showPromo(apiCreator.search(page, query));
+  showPromo(apiCreator.search(page, query, typeOfFilm));
   return searchQuery = query;//для loadMore
 }
 
