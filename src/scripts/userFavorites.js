@@ -10,13 +10,13 @@ if (localStorage.getItem('favoriteMovies') !== null) {
   favoriteMovies = localStorage.getItem("favoriteMovies").split(',');
 };
 if (localStorage.getItem('favoriteShows') !== null) {
-  favoriteMovies = localStorage.getItem("favoriteShows").split(',');
+  favoriteShows = localStorage.getItem("favoriteShows").split(',');
 }
 console.log('favoriteMovies :', favoriteMovies);
 console.log('favoriteShows :', favoriteShows);
 
 const addToFavorites = (id, type) => {
-  console.log('work :', id);
+  console.log('work :', type+'  '+ id);
   if (type === 'movie') {
     if (!favoriteMovies.includes(id)) {
       favoriteMovies.push(id);
@@ -26,6 +26,7 @@ const addToFavorites = (id, type) => {
     if (!favoriteShows.includes(id)) {
       favoriteShows.push(id);
       localStorage.setItem('favoriteShows', `${favoriteShows.join(',')}`);
+      console.log('favoriteShows :', favoriteShows);
       // console.log('localStorage.getItem :', localStorage.getItem('favoriteShows'));
     }
   }
