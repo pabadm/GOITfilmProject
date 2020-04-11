@@ -4,7 +4,7 @@
 
 
 //создаватель api(объект с функциями)(каждая возвращает ссылку на api)
-//type - сериалы либо фильмы
+//type - (тип) сериалы либо фильмы
 const apiCreator = {
   search: (page, query, type = 'movie') => {
     return `https://api.themoviedb.org/3/search/${type}?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US&page=${page}&include_adult=false&query=${query}`;
@@ -19,7 +19,7 @@ const apiCreator = {
     return `https://image.tmdb.org/t/p/original/${link}`
   },
   movie: (id, type = 'movie') => {
-    return `https://api.themoviedb.org/3/${type}/${id}?api_key=e9f6322f77334e3f0406d6b8eabd79ce`;
+    return `https://api.themoviedb.org/3/${type}/${id}?api_key=4aa539255aa0c2506cf45806a15a8a0a&language=en-US`;
     
   },
 }

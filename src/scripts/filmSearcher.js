@@ -13,18 +13,17 @@ import {typeOfFilm} from './switcher.js';
 
 let searchQuery = '';//вывожу эту переменную, чтобы при изменении текста в поле ввода могло корректно действовать событие loadMore
 
-const filmSearcher = (event, query = refs.film_search_form.firstElementChild.value) => {// query также может передавться из loadMore()
-  if (event !== undefined) {//функция используется не только как callback`
-    //   if(refs.film_search_form.firstElementChild.value === ''){
-    //   break;
-    // }
+
+// если функция сработала как колбек(на сабмите формы), то ресетится лоад мор и в кач-ве функции для нее передается filmSearcher
+//также сохраняю текст написанный в форме в переменную searchQuery, на случай, если пользователь после функции решит удалить из нее текст(тогда лоад мор будет работать некорректно)
+// лоад мор потом подставляет как текст для поиска ту переменную в параметр функции query, а в event - undefined
+const filmSearcher = (event, query = refs.film_search_form.firstElementChild.value) => {
+  if (event !== undefined) {
     loadMoreReset(filmSearcher);
-    // if(refs.film_search_form.firstElementChild.value === ''){
-    //   break;
-    // }
+    event.preventdefault;
   }
   showPromo(apiCreator.search(page, query, typeOfFilm));
-  return searchQuery = query;//для loadMore
+  return searchQuery = query;
 }
 
 export {filmSearcher, searchQuery};

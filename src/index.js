@@ -16,8 +16,12 @@ const refs = {
   load_more_btn: document.querySelector('#load_more'),
   theme_toggle_btn: document.querySelector('#theme_toggle_btn'),
   switch_btn: document.querySelector('#switch_btn'),//переключалка между сериалами и фильмами
+  show_favorites_btn:document.querySelector('#show_favorites_btn'),
   body: document.querySelector('body'),
 };
+
+// в индекс.js просто дал всем кнопкам колбек функции и по умолчанию запускаю отрисовку популярных фильмов, ну и объявил рефсы
+
 export default refs;
 
 import {filmSearcher} from './scripts/filmSearcher.js';
@@ -30,6 +34,11 @@ import {loadMore} from './scripts/loadMore.js';
 
 import {switcher} from './scripts/switcher.js';
 
+import showFavorites from './scripts/showFavorites.js';
+
+
+
+// showFavorites()
 // import {themeToggler, themeDefault} from './scripts/themeToggler.js';
 //начальный запуск показа фильмов
 filmPopular();
@@ -51,10 +60,13 @@ refs.home_btn.addEventListener('click', filmPopular);
 
 //ивент для кнопки (theme_toggle_btn)
 
-// refs.theme_toggle_btn.addEventListener('click',themeToggler);
+refs.show_favorites_btn.addEventListener('click',showFavorites);
 
 //ивент для переключалки 
 refs.switch_btn.addEventListener('click', switcher);
+
+
+
 
 // const scrollFunc = (event) =>{
 //   console.log('event :', pageYOffset + window.innerHeight);
@@ -79,10 +91,8 @@ refs.switch_btn.addEventListener('click', switcher);
 // themeToggler();
 // themeDefault();
 // localStorage.setItem('theme','light');
-if(localStorage.getItem('theme') === 'light'){
-  localStorage.setItem('theme','dark');
-}else{
-  localStorage.setItem('theme','light');
-}
-console.log('localStorage.getItem() :', localStorage.getItem('theme'));
-console.log('localStorage :', localStorage);
+// if(localStorage.getItem('theme') === 'light'){
+//   localStorage.setItem('theme','dark');
+// }else{
+//   localStorage.setItem('theme','light');
+// }

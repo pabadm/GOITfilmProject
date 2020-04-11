@@ -6,7 +6,8 @@ import apiCreator from './apiCreator.js';
 import {typeOfFilm} from './switcher.js';
 
 //выводит популярные фильмы
-
+// если функция сработала как коллбек(на кнопке home), то ресетится кнопка лоад мор и в кач-ве функции для нее передается filmPopular (также удаляется текст в форме)
+//потом  активируется функция showPromo с параметром(api) apicreator в который передается страница из лоад мора и тип фильма из свитчера(переключалка между фильмами и сериалами)
 const filmPopular = (event) => {
   if (event !== undefined) {
     loadMoreReset(filmPopular);
