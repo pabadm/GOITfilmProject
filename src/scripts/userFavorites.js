@@ -3,15 +3,14 @@
 import refs from '../index.js'
 
 //let - что-бы локал сторедж мог их заменять
-
 let favoriteMovies = [];
 let favoriteShows = [];
 // сначала происходит проверка на данные в локал сторедже и запись данных оттуда в переменные
 if (localStorage.getItem('favoriteMovies') !== null) {
-  favoriteMovies = localStorage.getItem("favoriteMovies").split(',');
+  favoriteMovies = JSON.parse(localStorage.getItem("favoriteMovies"))
 };
 if (localStorage.getItem('favoriteShows') !== null) {
-  favoriteShows = localStorage.getItem("favoriteShows").split(',');
+  favoriteShows = JSON.parse(localStorage.getItem("favoriteShows"));
 }
 console.log('favoriteShows :', favoriteShows);
 console.log('favoriteMovies :', favoriteMovies);
@@ -27,7 +26,7 @@ const favoritesManipulator = (id, type) => {
     } else {
       favoriteMovies.splice(favoriteMovies.indexOf(id), 1);
     }
-    localStorage.setItem('favoriteMovies', `${favoriteMovies.join(',')}`)
+    localStorage.setItem('favoriteMovies', JSON.stringify(favoriteMovies));
     //сериалы
   } else if(type === 'tv') {
     if (!favoriteShows.includes(id)) {
@@ -36,10 +35,10 @@ const favoritesManipulator = (id, type) => {
     } else {
       favoriteShows.splice(favoriteShows.indexOf(id), 1);
     }
-    localStorage.setItem('favoriteShows', `${favoriteShows.join(',')}`);
+    localStorage.setItem('favoriteShows', JSON.stringify(favoriteShows));
   }
   favoriteShows = [];
 }
-
+// console.log('favoriteMovies :', favoriteMovies);
 
 export {favoritesManipulator,favoriteMovies,favoriteShows};

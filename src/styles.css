@@ -10,10 +10,34 @@
 
 @import "./css/modal.css";
 
+@import './css/backToTop.css';
 /* *{
     color: #fff;#337CAA #5294E2
 } */
+.test_svg{
+    fill: red;
+    width: 100px;
+    height: 100px;
+    z-index: 200;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
 
+}
+#heart{
+    display: block;
+    width: 100px;
+    height: 100px;
+    /* background-color: red; */
+}
 /* .not_found_block{
     display: none;
+} */
+
+/* .tabbrowser-tab[selected="true"] {
+    -moz-user-focus: normal !important;
+}*/
+/* *{
+    -moz-appearance: none !important;
 } */

@@ -39,12 +39,14 @@ const showFavorites = (event) => {
       refs.films_block.removeChild(promo);
     });
   }
-
+  console.log('favoriteMovies :', favoriteMovies);
+  console.log('moviesArr :', moviesArr);
   if(moviesArr.length === 0){
       refs.not_found_block.style.display = 'block';
       return;  
   }
-
+  // refs.film_promo = document.querySelectorAll('.film_promo');
+  // refs.film_promo_btn = document.querySelectorAll('.film_promo_btn');
   moviesArr.forEach(film => {
     fetch(apiCreator.movie(film, typeOfFilm))
       .then(response => response.json())
@@ -55,6 +57,7 @@ const showFavorites = (event) => {
           filmTitle: film.title,
           filmId: film.id
         };
+
         if (film.title === undefined) {
           filmData.filmTitle = film.name;
         }
@@ -62,15 +65,50 @@ const showFavorites = (event) => {
           filmData.filmImgLink = 'https://seor.ua/media/img/default-image.jpg';
         }
         refs.films_block.insertAdjacentHTML('afterbegin', promo(filmData));
-        refs.film_promo = document.querySelectorAll('.film_promo');
-        refs.film_promo_btn = document.querySelectorAll('.film_promo_btn');
-
+        // проверка на то, отрисовался ли последний элемент массива, чтобы обратится к dom 
+        //P.S перевел film.id в текстовый формат т.к. в массиве это текст
+        if(moviesArr[moviesArr.length - 1] === `${film.id}`){
+          refs.film_promo = document.querySelectorAll('.film_promo');
+          refs.film_promo_btn = document.querySelectorAll('.film_promo_btn');
+          console.log('one time hooray');
+        }
       }).catch(err => console.log('err '+ err));
   });
+  // refs.film_promo = document.querySelectorAll('.film_promo');
+  // refs.film_promo_btn = document.querySelectorAll('.film_promo_btn');
   // в конце функции не работает добавление элементов в рефс( как выполнить это только после промиса?)
 
   // refs.film_promo = document.querySelectorAll('.film_promo');
   // refs.film_promo_btn = document.querySelectorAll('.film_promo_btn');
 
+
+
+  // const testMovies = moviesArr.map(film => {
+  //   fetch(apiCreator.movie(film, typeOfFilm))
+  //     .then(response => response.json())
+  //     .then(film => {
+  //       const filmData = {
+  //         filmImgLink: apiCreator.image(film.poster_path, true),
+  //         filmVote: film.vote_average,
+  //         filmTitle: film.title,
+  //         filmId: film.id
+  //       };
+  //       if (film.title === undefined) {
+  //         filmData.filmTitle = film.name;
+  //       }
+  //       if (film.poster_path === null) {
+  //         filmData.filmImgLink = 'https://seor.ua/media/img/default-image.jpg';
+  //       }
+  //       refs.films_block.insertAdjacentHTML('afterbegin', promo(filmData));
+  //       // refs.film_promo = document.querySelectorAll('.film_promo');
+  //       // refs.film_promo_btn = document.querySelectorAll('.film_promo_btn');
+  //       return apiCreator.movie(film,typeOfFilm);
+  //     }).catch(err => console.log('err '+ err));
+  // });
+  // Promise.all(testMovies).then(testMovies => {
+  //   console.log('testMovies :', testMovies);
+  //   refs.film_promo = document.querySelectorAll('.film_promo');
+  //   refs.film_promo_btn = document.querySelectorAll('.film_promo_btn');
+  // })
 }
 export default showFavorites;
